@@ -13,7 +13,9 @@ dist-ssr
 *.local
 
 # nested project repos live here and should stay independent
-repos/
+repos/*
+!repos/workspace-hub/
+!repos/workspace-hub/**
 Run Workspace Hub.command
 Run mysigmail.command
 
