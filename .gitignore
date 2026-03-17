@@ -14,6 +14,8 @@ dist-ssr
 
 # nested project repos live here and should stay independent
 repos/
+Run Workspace Hub.command
+Run mysigmail.command
 
 # macOS and synced-folder noise
 .DS_Store

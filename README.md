@@ -1,5 +1,9 @@
 # Codex Workspace Handover Pack
 
+<!-- workspace-hub:cover:start -->
+![Codex Workspace cover](cover.png)
+<!-- workspace-hub:cover:end -->
+
 ## Purpose
 
 This workspace README is the master entry point for the handover pack used to build and evolve **Codex Workspace**.
@@ -79,10 +83,11 @@ Use this for a compact record of workspace-level changes.
 At a high level, Codex should produce:
 
 ### 1. The workspace root
-At:
+At the folder named `Codex Workspace/`, wherever it lives on disk. For example:
 
 ```text
-~/Desktop/Work Documents/Codex Workspace/
+~/Code/Codex Workspace/
+~/Work/Codex Workspace/
 ```
 
 ### 2. A shared structure
@@ -98,6 +103,7 @@ A separate application inside `repos/` that can:
 - classify them
 - launch and stop supported repos
 - open previews
+- capture repo cover screenshots and insert them into repo README files
 - work with or without ServBay
 
 ### 4. Repo metadata support
