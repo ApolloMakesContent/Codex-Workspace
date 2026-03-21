@@ -16,6 +16,40 @@ The goal is to create a central workspace on the Mac desktop that:
 
 This pack is intentionally split into separate files so Codex can reason about architecture and runtime concerns clearly.
 
+## Context model
+
+The workspace also aims to keep agent-facing context explicit and inspectable.
+
+That means:
+
+- repo docs and manifests remain the primary source of truth
+- portable skills live in normal workspace folders
+- generated summaries belong under `cache/`
+- local-only memory and secrets stay local
+
+The intended result is a filesystem-first context model that is easier to inspect and less opaque than ad hoc prompt assembly.
+
+## Challenges
+
+Mixed-repo workspaces tend to fragment context across docs, manifests, runtime config, local notes, and tool-specific setup.
+
+That creates a few predictable problems:
+
+- useful repo knowledge becomes harder to find
+- too much detail gets loaded before relevance is established
+- local operator knowledge leaks into tracked docs
+- tool decisions become harder to explain
+
+## Approach
+
+Codex Workspace addresses that with a practical local-first model:
+
+- keep repo facts in tracked files
+- keep generated summaries in `cache/`
+- keep skills portable rather than vendor-locked
+- keep local operator memory separate from tracked project knowledge
+- keep classification and retrieval observable
+
 ## Files in this pack
 
 ### `01-codex-workspace-handover.md`
@@ -45,6 +79,11 @@ Each repository remains independently runnable in the way that best suits it:
 - static sites via a static server
 - Vite / Three.js / WebGL projects via their dev server
 - other stacks according to their own tooling
+
+The context model follows the same principle:
+- tracked repo resources are the canonical source of truth
+- generated summaries are helper layers
+- local memory is private until promoted intentionally
 
 ## Important architectural rule
 
@@ -86,10 +125,12 @@ This setup should optimise for:
 - clarity
 - speed
 - low duplication
+- observable context
 - predictable repo handling
 - compatibility with Codex
 - compatibility with mixed repo types
 - clean future expansion
+- debuggable agent and tooling behaviour
 
 ## Non-goals
 

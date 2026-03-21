@@ -15,13 +15,15 @@ Read these in order:
 5. `04-build-order-and-dod.md`
 6. `05-examples-and-templates.md`
 7. `06-cross-agent-skills-and-mcp.md`
-8. `HANDOVER.md`
-9. `CHANGELOG.md`
+8. `07-context-cache-and-retrieval.md`
+9. `HANDOVER.md`
+10. `CHANGELOG.md`
 
 ## What Lives Here
 
 - `00-overview.md` to `05-examples-and-templates.md` define the handover pack.
 - `06-cross-agent-skills-and-mcp.md` defines the cross-agent portability layout for skills and MCP.
+- `07-context-cache-and-retrieval.md` defines the layered context-cache model and retrieval visibility rules.
 - `HANDOVER.md` summarizes the current state of the workspace after the initial build.
 - `CHANGELOG.md` records notable workspace-level changes.
 

@@ -53,6 +53,18 @@ Workspace Hub is:
 - a local orchestration layer
 - a visibility and convenience tool
 
+## Challenges
+
+In a mixed local workspace, the Hub needs to solve more than simple repo listing.
+
+It also needs to make sense of:
+
+- fragmented repo metadata
+- conservative type detection
+- multiple runtime models
+- generated summaries versus source-of-truth files
+- local-only operator knowledge that should not be mistaken for shared repo fact
+
 ## Recommended stack
 
 ### Current v1 stack
@@ -80,6 +92,7 @@ The Hub must be able to:
 - read key files from each repo
 - detect repo type
 - read optional repo manifest files
+- read cached repo context summaries when present
 - launch local commands
 - track running process state
 - stop launched processes
@@ -151,6 +164,7 @@ Each repo card or row should show:
 When a repo is selected, show:
 - summary metadata
 - detected files
+- context sources where available
 - commands
 - notes
 - current branch
@@ -188,6 +202,8 @@ Suggested detection signals:
 - WordPress file patterns
 - lockfiles
 - known dependencies such as Three.js
+
+The Hub should retain enough evidence to explain its classification to the user.
 
 ### Repo manifest reading
 If `.workspace/project.json` exists in a repo, it should override or guide detected behaviour.
@@ -227,6 +243,33 @@ These are valuable and should be included if they do not slow down the first bui
 - lockfile/package manager detection
 - dependency missing warning
 - quick copy URL action
+- context cache freshness and provenance view
+
+## Context model
+
+Workspace Hub should treat repo context as a visible filesystem concern rather than an opaque internal prompt.
+
+In practice that means:
+
+- tracked docs and manifests are the source of truth
+- generated `L0` and `L1` summaries may live under `cache/context/`
+- raw repo files remain the `L2` detail layer
+- the Hub should be able to show which files informed a summary when that metadata exists
+
+This keeps classification and summary behaviour explainable and easier to debug.
+
+## Retrieval observability
+
+Workspace Hub should make retrieval and detection decisions visible where practical.
+
+Useful examples:
+
+- show which files drove repo classification
+- show which files were used to generate the current summary
+- show whether a summary is fresh or stale relative to its inputs
+- distinguish between tracked repo context and local-only operator overrides
+
+If the Hub says a repo is `vite`, the user should be able to see why.
 
 ## Data and persistence
 
@@ -247,6 +290,8 @@ Persist:
 - last known status
 
 Do not persist sensitive secrets in custom metadata files.
+
+Local-only operator notes may be persisted, but they should stay clearly separate from tracked repo metadata and should never silently overwrite published repo facts.
 
 ## Repo manifest schema
 

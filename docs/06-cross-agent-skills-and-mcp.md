@@ -110,6 +110,40 @@ Good contents:
 
 Do not store real secrets or machine-specific absolute paths here.
 
+## Tracked knowledge vs local memory
+
+Separate durable repo knowledge from operator memory.
+
+Tracked repo knowledge includes things such as:
+
+- repo runtime rules
+- stable troubleshooting notes
+- reusable workflow guidance
+- durable task instructions that other contributors should also see
+
+That knowledge should live in tracked files such as:
+
+- `README.md`
+- `docs/`
+- `.workspace/project.json`
+- `.workspace/skills/`
+
+Local operator memory includes things such as:
+
+- machine-specific paths
+- private MCP endpoints
+- temporary workarounds
+- personal notes and reminders
+- secrets or environment-specific preferences
+
+That material should stay in ignored local files by default.
+
+## Promotion rule
+
+If a local note proves stable, broadly useful, and safe to publish, promote it into tracked docs, manifests, or portable skills.
+
+Do not rely on private local memory as the long-term home of canonical repo knowledge.
+
 ## Adapter rule
 
 If an agent expects a specific directory such as `.agents/skills/` or `.claude/skills/`, create that as an adapter target, not as the primary source.
@@ -160,6 +194,7 @@ Avoid making Workspace Hub responsible for launching or orchestrating agent-spec
 - local secrets and machine paths last
 - repo opt-in, never mandatory
 - no agent setup should be required to run a repo normally
+- promote durable local knowledge into tracked files when it becomes generally useful
 
 ## Practical outcome
 
