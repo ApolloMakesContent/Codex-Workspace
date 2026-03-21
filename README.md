@@ -75,6 +75,7 @@ Start here:
 - [docs/03-workspace-hub-build-spec.md](docs/03-workspace-hub-build-spec.md)
 - [docs/04-build-order-and-dod.md](docs/04-build-order-and-dod.md)
 - [docs/05-examples-and-templates.md](docs/05-examples-and-templates.md)
+- [docs/06-cross-agent-skills-and-mcp.md](docs/06-cross-agent-skills-and-mcp.md)
 
 Supporting references:
 - [docs/HANDOVER.md](docs/HANDOVER.md)
