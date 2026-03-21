@@ -155,6 +155,7 @@ See:
 
 ## Community
 
+- Ask questions in [GitHub Discussions Q&A](https://github.com/RichardGeorgeDavis/Codex-Workspace/discussions/categories/q-a)
 - [LICENSE](LICENSE)
 - [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md)
 - [.github/FUNDING.yml](.github/FUNDING.yml)
