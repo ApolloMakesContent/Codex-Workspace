@@ -2,6 +2,10 @@
 
 ## 2026-03-21
 
+- Expanded the public project framing across the root docs to describe the filesystem-first context model, observable retrieval, and tracked-versus-local memory rules more directly.
+- Added cross-agent skills and MCP guidance plus a context-cache and retrieval note for generated summaries and provenance.
+- Refreshed the README cover path with a versioned asset to avoid stale GitHub image caching.
+- Updated the repository social preview artwork to match the current project framing.
 - Moved the canonical workspace handover docs from `tools/docs/` to the root `docs/` folder.
 - Removed the duplicated documentation links from `shared/` so it acts as a metadata-only layer.
 - Rewrote the repo root `README.md` to behave more like a public project homepage.

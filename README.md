@@ -1,7 +1,7 @@
 # Codex Workspace
 
 <!-- workspace-hub:cover:start -->
-![Codex Workspace cover](cover.png)
+![Codex Workspace cover](.github/assets/cover-readme-20260321.png)
 <!-- workspace-hub:cover:end -->
 
 Codex Workspace is a local-first workspace structure for managing many standalone repositories on one machine without forcing them into a monorepo.
