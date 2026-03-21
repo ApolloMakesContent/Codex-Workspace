@@ -15,10 +15,10 @@ Use it after reading the core handover pack when you need to understand:
 The canonical handover Markdown now lives in:
 
 ```text
-tools/docs/
+docs/
 ```
 
-The `shared/` folder exposes linked copies of the core handover docs for compatibility, alongside workspace metadata such as:
+The `shared/` folder now holds workspace metadata such as:
 
 - `shared/repo-index.json`
 - `shared/standards.md`
@@ -27,11 +27,11 @@ The `shared/` folder exposes linked copies of the core handover docs for compati
 
 The workspace foundation is in place:
 
-- `repos/`, `tools/`, `cache/`, and `shared/` exist
+- `docs/`, `repos/`, `tools/`, `cache/`, and `shared/` exist
 - shared cache placeholders exist
 - shared helper scripts exist under `tools/scripts/`
 - template files exist under `tools/templates/`
-- the handover pack now lives under `tools/docs/`
+- the handover pack now lives under `docs/`
 
 ## Current Workspace Hub state
 
@@ -59,7 +59,7 @@ The most practical next product step is:
 
 The next useful docs step is:
 
-1. Add a runtime troubleshooting note under `repos/workspace-hub/docs/`
+1. Expand runtime troubleshooting and operator guidance under `repos/workspace-hub/docs/`
 
 ## Completion review
 

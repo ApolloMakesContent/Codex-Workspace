@@ -67,10 +67,7 @@ Preferred v1 approach:
 - easy to run without extra complexity
 
 A strong option is:
-- **Tauri + React + Vite**
-
-Alternative acceptable approach:
-- a local web app using Node and a simple backend process manager
+- a local web app using React, Vite, and a small Node backend process manager
 
 Do not over-engineer v1.
 

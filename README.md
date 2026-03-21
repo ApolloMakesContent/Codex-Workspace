@@ -1,170 +1,106 @@
-# Codex Workspace Handover Pack
+# Codex Workspace
 
 <!-- workspace-hub:cover:start -->
 ![Codex Workspace cover](cover.png)
 <!-- workspace-hub:cover:end -->
 
-## Purpose
+Codex Workspace is a local-first workspace structure for managing many standalone repositories on one machine without forcing them into a monorepo.
 
-This workspace README is the master entry point for the handover pack used to build and evolve **Codex Workspace**.
+It combines:
 
-It is intended to be given to Codex so it can:
+- a predictable folder layout for mixed stacks
+- shared caches and helper tooling
+- lightweight workspace metadata
+- a vendored [Workspace Hub](repos/workspace-hub/README.md) app for discovery, runtime control, and previews
 
-- understand the overall architecture
-- create the workspace structure correctly
-- build the Workspace Hub application
-- support local repo runtime and preview behaviour
-- integrate with ServBay where useful
-- avoid incorrect assumptions about shared dependencies or runtime models
+## Why It Exists
 
-This README is the single entry point for the pack.
+This repo exists to keep local development practical when your machine contains many unrelated repos.
 
-The canonical handover Markdown now lives in `tools/docs/`.
-The `shared/` folder exposes linked copies for compatibility alongside workspace metadata.
+- repos stay independently runnable
+- caches can be shared without sharing installs
+- local runtime behaviour stays explicit
+- WordPress, Vite, static, PHP, and utility repos can coexist cleanly
+- ServBay remains optional rather than becoming a hard dependency
 
-## Recommended reading order
+## Core Principles
 
-Codex should read the files in this order:
+- Do not merge unrelated repos into one dependency structure.
+- Share caches, not installs.
+- Treat each repo as independently runnable.
+- Prefer direct local runtime for frontend and dev-server projects.
+- Keep WordPress handling pragmatic.
+- Use lightweight manifests where explicit runtime behaviour helps.
 
-### 1. `tools/docs/00-overview.md`
-Read first.  
-This explains the overall model, the main layers, the root path, and the relationship between Codex Workspace, Workspace Hub, ServBay, and repo-native runtimes.
-
-### 2. `tools/docs/01-codex-workspace-handover.md`
-Read second.  
-This defines the folder structure, shared caches, tooling layout, repo rules, and workspace-level conventions.
-
-### 3. `tools/docs/02-local-runtime-handover.md`
-Read third.  
-This defines how repos should be discovered, launched, previewed, stopped, and optionally surfaced through ServBay.
-
-### 4. `tools/docs/03-workspace-hub-build-spec.md`
-Read fourth.  
-This is the implementation-oriented spec for the Workspace Hub app itself.
-
-### 5. `tools/docs/04-build-order-and-dod.md`
-Read fifth.  
-This defines the preferred build order, milestones, acceptance criteria, and what should be considered out of scope for v1.
-
-### 6. `tools/docs/05-examples-and-templates.md`
-Read sixth.  
-This provides example data and references for manifests, repo metadata, and preview mode usage.
-
-### 7. `AGENTS.md`
-Read alongside the above files.  
-This provides behavioural rules and operating guidance for Codex while working in the workspace.
-
-### 8. `tools/docs/HANDOVER.md`
-Read after the core pack if you are taking over an existing build.  
-This summarises current workspace state, recent doc moves, and recommended continuation points.
-
-### 9. `tools/docs/CHANGELOG.md`
-Use this for a compact record of workspace-level changes.
-
-## Included files
-
-### Core docs
-- `tools/docs/00-overview.md`
-- `tools/docs/01-codex-workspace-handover.md`
-- `tools/docs/02-local-runtime-handover.md`
-- `tools/docs/03-workspace-hub-build-spec.md`
-- `tools/docs/04-build-order-and-dod.md`
-- `tools/docs/05-examples-and-templates.md`
-- `tools/docs/HANDOVER.md`
-- `tools/docs/CHANGELOG.md`
-- `AGENTS.md`
-
-### Example files
-- `tools/templates/project-manifest.template.json`
-- `tools/templates/repo-index.sample.json`
-
-## What Codex should build
-
-At a high level, Codex should produce:
-
-### 1. The workspace root
-At the folder named `Codex Workspace/`, wherever it lives on disk. For example:
+## Workspace Layout
 
 ```text
-~/Code/Codex Workspace/
-~/Work/Codex Workspace/
+Codex Workspace/
+├── docs/
+├── repos/
+│   └── workspace-hub/
+├── tools/
+├── cache/
+├── shared/
+└── workspace.code-workspace
 ```
 
-### 2. A shared structure
-Including:
-- `repos/`
-- `tools/`
-- `cache/`
-- `shared/`
+`docs/` is the canonical documentation surface.
+`shared/` is for workspace metadata such as [`shared/repo-index.json`](shared/repo-index.json) and [`shared/standards.md`](shared/standards.md), not duplicated doc mirrors.
 
-### 3. The `workspace-hub` repo
-A separate application inside `repos/` that can:
-- scan sibling repos
-- classify them
-- launch and stop supported repos
-- open previews
-- capture repo cover screenshots and insert them into repo README files
-- work with or without ServBay
+## Quick Start
 
-### 4. Repo metadata support
-Including:
-- optional per-repo manifest files
-- shared repo index support
-- preview mode selection
+Review the docs index:
+- [docs/README.md](docs/README.md)
 
-## Important operating rules
+Run the local dashboard:
 
-Codex must preserve these core rules:
+```bash
+cd repos/workspace-hub
+pnpm install
+pnpm dev
+```
 
-### Rule 1
-Do **not** create one shared `node_modules` or equivalent dependency directory across unrelated repos.
+Use the starter files when you need explicit repo metadata:
+- [project-manifest.template.json](project-manifest.template.json)
+- [repo-index.sample.json](repo-index.sample.json)
 
-### Rule 2
-Share caches, not project installs.
+## Documentation
 
-### Rule 3
-Every repo must remain runnable independently.
+Start here:
+- [docs/README.md](docs/README.md)
+- [docs/00-overview.md](docs/00-overview.md)
+- [docs/01-codex-workspace-handover.md](docs/01-codex-workspace-handover.md)
+- [docs/02-local-runtime-handover.md](docs/02-local-runtime-handover.md)
+- [docs/03-workspace-hub-build-spec.md](docs/03-workspace-hub-build-spec.md)
+- [docs/04-build-order-and-dod.md](docs/04-build-order-and-dod.md)
+- [docs/05-examples-and-templates.md](docs/05-examples-and-templates.md)
 
-### Rule 4
-ServBay is optional convenience, not a hard dependency for all repos.
+Supporting references:
+- [docs/HANDOVER.md](docs/HANDOVER.md)
+- [docs/CHANGELOG.md](docs/CHANGELOG.md)
+- [AGENTS.md](AGENTS.md)
+- [repos/workspace-hub/README.md](repos/workspace-hub/README.md)
 
-### Rule 5
-Frontend/dev-server repos should usually prefer direct local runtime unless there is a tested reason to proxy them.
+## Workspace Hub
 
-## Suggested implementation sequence
+Workspace Hub is the most concrete product in this repo today. It scans sibling repos, classifies them conservatively, shows runtime and metadata state, and provides start, stop, open, and preview actions without forcing all repos into one toolchain.
 
-Condensed sequence:
+See:
+- [repos/workspace-hub/README.md](repos/workspace-hub/README.md)
+- [repos/workspace-hub/docs/manifest.md](repos/workspace-hub/docs/manifest.md)
+- [repos/workspace-hub/docs/runtime-troubleshooting.md](repos/workspace-hub/docs/runtime-troubleshooting.md)
 
-1. create workspace root and folders
-2. add shared docs and metadata placeholders
-3. scaffold `workspace-hub`
-4. implement repo discovery
-5. implement repo detection and manifest reading
-6. add open/start/stop flows
-7. add persisted metadata
-8. add ServBay-aware preview behaviour
-9. refine and harden
+## Community
 
-See `tools/docs/04-build-order-and-dod.md` for the detailed sequence.
+- [LICENSE](LICENSE)
+- [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md)
+- [.github/FUNDING.yml](.github/FUNDING.yml)
+- [.github/CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md)
+- [.github/SECURITY.md](.github/SECURITY.md)
+- [.github/SUPPORT.md](.github/SUPPORT.md)
+- Support the work: [PayPal](https://www.paypal.com/donate/?hosted_button_id=Z9ET7KXE4MMZS)
 
-## Hand-off intent
+## Current Focus
 
-This pack is designed to reduce ambiguity and avoid over-engineering.
-
-The intended v1 outcome is:
-
-- a well-structured desktop workspace
-- a separate Hub app that is practically useful
-- a mixed-runtime model that supports WordPress, static sites, Three.js, WebGL, and similar repos
-- optional ServBay single-domain convenience
-- clean foundations for future growth
-
-## Definition of success
-
-This handover pack is successful when Codex can use it to build a system that is:
-
-- understandable
-- maintainable
-- performant enough for daily local use
-- flexible across mixed repo types
-- not dependent on fragile shared dependency hacks
+The immediate target is a strong local workspace structure plus a practical Workspace Hub v1, with optional ServBay integration and enough documentation to make the repo understandable to outside contributors.

@@ -60,10 +60,13 @@ It must not become a hard dependency for every repo.
 
 ## Root path
 
-The default root path is:
+The workspace root is the folder named `Codex Workspace/`.
+
+It may live anywhere on disk. Example locations:
 
 ```text
-~/Desktop/Work Documents/Codex Workspace/
+~/Work Documents/Codex Workspace/
+~/Local Sites/Codex Workspace/
 ```
 
 ## Recommended local domain

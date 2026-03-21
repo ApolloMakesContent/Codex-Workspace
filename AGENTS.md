@@ -41,13 +41,16 @@ Prefer lightweight per-repo metadata files such as `.workspace/project.json` whe
 
 ## Workspace assumptions
 
-The root path is expected to be:
+The workspace root is the folder named:
 
 ```text
-~/Desktop/Work Documents/Codex Workspace/
+Codex Workspace/
 ```
 
+It may live anywhere on disk.
+
 Expected top-level folders:
+- `docs/`
 - `repos/`
 - `tools/`
 - `cache/`
@@ -96,8 +99,8 @@ Where uncertain, classify conservatively and allow manual override.
 
 When creating new supporting files, prefer:
 
-- `tools/docs/` for canonical cross-workspace handover and tooling docs
-- `shared/` for workspace-facing metadata and compatibility links
+- `docs/` for canonical cross-workspace handover and tooling docs
+- `shared/` for workspace-facing metadata
 - `tools/templates/` for starter templates
 - `.workspace/project.json` for per-repo runtime metadata
 

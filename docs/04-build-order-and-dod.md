@@ -45,18 +45,17 @@ Create the base folder structure, shared documents, and shared utility locations
 ### Tasks
 - create the `Codex Workspace` root folder
 - create the required top-level folders
-- place the canonical handover docs in `tools/docs/`
-- expose linked or mirrored copies in `shared/` where useful
+- place the canonical handover docs in `docs/`
 - create a placeholder `repo-index.json`
 - create a basic `workspace.code-workspace`
 
 ### Definition of done
 Stage 1 is complete when:
 
-- the workspace exists at the agreed desktop path
-- `repos/`, `tools/`, `cache/`, and `shared/` all exist
-- the canonical handover docs are present in `tools/docs/`
-- the shared compatibility layer is present
+- the workspace exists at the agreed path
+- `docs/`, `repos/`, `tools/`, `cache/`, and `shared/` all exist
+- the canonical handover docs are present in `docs/`
+- the shared metadata layer is present
 - there is a clear place for future scripts and metadata
 - no repo-specific assumptions have been baked into the workspace structure
 
@@ -333,10 +332,10 @@ When Codex builds this system, prefer:
 
 A final acceptance check for v1 should confirm:
 
-- [ ] Workspace root exists in the correct desktop location
+- [ ] Workspace root exists in the intended location
 - [ ] Expected top-level folders exist
-- [ ] Handover docs are stored canonically in `tools/docs/`
-- [ ] Shared links or mirrors exist where expected
+- [ ] Handover docs are stored canonically in `docs/`
+- [ ] Shared metadata exists where expected
 - [ ] `workspace-hub` exists as a separate repo
 - [ ] Hub can run locally
 - [ ] Hub can discover sibling repos

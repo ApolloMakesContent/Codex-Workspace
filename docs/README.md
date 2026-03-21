@@ -1,8 +1,8 @@
-# Tools Docs
+# Docs
 
-This folder is the canonical home for shared workspace documentation and the Codex Workspace handover pack.
+This folder is the canonical home for the Codex Workspace documentation set.
 
-Use the workspace root [README.md](/Users/richard/Desktop/Work%20Documents/Codex%20Workspace/README.md) as the top-level entrypoint, then use this folder for the actual handover files and tooling docs.
+Use [../README.md](../README.md) as the public-facing project entrypoint, then use this folder for the detailed workspace and handover material.
 
 ## Core pack
 
@@ -17,24 +17,28 @@ Read these in order:
 7. `HANDOVER.md`
 8. `CHANGELOG.md`
 
-## Folder roles
+## What Lives Here
 
 - `00-overview.md` to `05-examples-and-templates.md` define the handover pack.
 - `HANDOVER.md` summarizes the current state of the workspace after the initial build.
 - `CHANGELOG.md` records notable workspace-level changes.
+
+## Related Locations
+
 - `tools/bin/` holds small wrappers or launch helpers.
 - `tools/scripts/` holds reusable workspace scripts.
 - `tools/templates/` holds starter metadata templates.
 - `tools/manifests/` holds source lists and supporting manifests for scripts.
+- `repos/workspace-hub/docs/` holds repo-local documentation for Workspace Hub itself.
 
 Useful maintenance script:
 
 - `tools/scripts/cleanup-sync-noise.sh` removes macOS and sync-client noise files such as `Icon\r` and `._*`, including the broken-ref cases when they leak into `.git/`.
 - `tools/scripts/trim-git-repos.sh` performs safe Git maintenance across `repos/` by cleaning `.git` sync noise, expiring older reflog entries, and running `git gc` with a conservative prune window.
 
-## Shared exposure
+## Shared Metadata
 
-The `shared/` folder exposes linked copies of the core handover docs for compatibility, alongside workspace metadata such as `shared/repo-index.json` and `shared/standards.md`.
+The `shared/` folder is reserved for workspace-facing metadata such as `shared/repo-index.json` and `shared/standards.md`.
 
 ## Recommended machine-level tools
 

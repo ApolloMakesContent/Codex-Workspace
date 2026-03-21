@@ -20,7 +20,7 @@ This file should be read together with:
 The Workspace Hub must live at:
 
 ```text
-~/Desktop/Work Documents/Codex Workspace/repos/workspace-hub/
+Codex Workspace/repos/workspace-hub/
 ```
 
 It is a normal repository inside the workspace and must remain independently runnable.
@@ -55,27 +55,22 @@ Workspace Hub is:
 
 ## Recommended stack
 
-### Preferred v1 stack
+### Current v1 stack
 Use:
 
-- **Tauri**
 - **React**
 - **Vite**
 - **TypeScript**
+- **Node**
+- **Express**
 
 Reason:
-- lightweight desktop-style app
-- strong local file-system/process access
-- good fit for Mac
-- fast dev cycle
-- cleaner than Electron for this use case
+- fast local iteration
+- simple browser-based UI
+- practical process and filesystem control through a small Node service
+- easy to run inside the workspace without a desktop shell
 
-### Acceptable alternative
-A local web app with:
-- React or similar frontend
-- Node backend for process and filesystem control
-
-However, Tauri is the preferred route if Codex can scaffold it reliably.
+If a desktop wrapper is useful later, it should be an optional future layer rather than a v1 requirement.
 
 ## Core technical requirements
 
@@ -108,10 +103,9 @@ workspace-hub/
 │   │   ├── filters/
 │   │   └── settings/
 │   ├── lib/
-│   ├── hooks/
 │   ├── types/
 │   └── styles/
-├── src-tauri/
+├── server/
 ├── public/
 ├── data/
 ├── README.md

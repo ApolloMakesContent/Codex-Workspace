@@ -6,7 +6,7 @@ Create a predictable, well-structured local workspace for Codex and local develo
 
 This workspace must:
 
-- live on the desktop inside `Work Documents`
+- live inside a folder named `Codex Workspace`
 - hold all repositories in one central location
 - separate shared tooling from project-specific dependencies
 - keep repositories portable and self-contained
@@ -16,11 +16,7 @@ This workspace must:
 
 ## Root path
 
-The workspace root must be:
-
-```text
-~/Desktop/Work Documents/Codex Workspace/
-```
+The workspace root must be the folder named `Codex Workspace/`, wherever it lives on disk.
 
 ## Required top-level structure
 
@@ -28,22 +24,22 @@ Create the following structure:
 
 ```text
 Codex Workspace/
+├── docs/
+│   ├── README.md
+│   ├── 00-overview.md
+│   ├── 01-codex-workspace-handover.md
+│   ├── 02-local-runtime-handover.md
+│   ├── 03-workspace-hub-build-spec.md
+│   ├── 04-build-order-and-dod.md
+│   ├── 05-examples-and-templates.md
+│   ├── HANDOVER.md
+│   └── CHANGELOG.md
 ├── repos/
 ├── tools/
 │   ├── bin/
 │   ├── scripts/
 │   ├── templates/
-│   ├── manifests/
-│   └── docs/
-│       ├── README.md
-│       ├── 00-overview.md
-│       ├── 01-codex-workspace-handover.md
-│       ├── 02-local-runtime-handover.md
-│       ├── 03-workspace-hub-build-spec.md
-│       ├── 04-build-order-and-dod.md
-│       ├── 05-examples-and-templates.md
-│       ├── HANDOVER.md
-│       └── CHANGELOG.md
+│   └── manifests/
 ├── cache/
 │   ├── npm/
 │   ├── pnpm-store/
@@ -51,14 +47,6 @@ Codex Workspace/
 │   ├── pip/
 │   └── homebrew/
 ├── shared/
-│   ├── 00-overview.md
-│   ├── 01-codex-workspace-handover.md
-│   ├── 02-local-runtime-handover.md
-│   ├── 03-workspace-hub-build-spec.md
-│   ├── 04-build-order-and-dod.md
-│   ├── 05-examples-and-templates.md
-│   ├── AGENTS.md
-│   ├── README.md
 │   ├── repo-index.json
 │   └── standards.md
 └── workspace.code-workspace
@@ -90,7 +78,17 @@ Use this for:
 - clone/update helpers
 - templates for repo manifests
 - templates for `.codex` config if needed
-- canonical handover docs and shared workflow documentation
+- source lists and supporting manifests
+
+### `docs/`
+Holds the canonical workspace documentation set.
+
+Use this for:
+- the handover pack
+- workspace conventions
+- runtime rules
+- build sequencing
+- workspace-level changelog and handoff notes
 
 ### `cache/`
 Holds shared caches and stores used by package managers or installers.
@@ -101,7 +99,7 @@ Purpose:
 - keep large caches outside project directories
 
 ### `shared/`
-Holds workspace-facing metadata, standards, and compatibility links or mirrors for the handover pack.
+Holds workspace-facing metadata and shared standards.
 
 ## Core workspace rules
 
@@ -133,17 +131,16 @@ Examples:
 - `tools/bin/open-repo`
 - `tools/bin/repo-status`
 
-### Rule 4: canonical handover docs belong in `tools/docs/`
-The `tools/docs/` folder is the source of truth for:
+### Rule 4: canonical handover docs belong in `docs/`
+The `docs/` folder is the source of truth for:
 - the handover pack
 - workspace conventions
 - runtime rules
 - build sequencing
 
-The `shared/` folder should expose compatibility links or mirrors plus workspace metadata such as:
+The `shared/` folder should hold workspace metadata such as:
 - `shared/repo-index.json`
 - `shared/standards.md`
-- linked handover docs where helpful
 
 ## Suggested machine-level tooling
 
@@ -262,7 +259,7 @@ It should:
 Codex may:
 - create the folder structure
 - create helper scripts in `tools/`
-- create or update canonical handover docs in `tools/docs/`
+- create or update canonical handover docs in `docs/`
 - create templates in `tools/templates/`
 - create or update `shared/repo-index.json`
 - create the `workspace-hub` repo
@@ -294,7 +291,7 @@ Run first-pass install/setup based on detected stack.
 
 This handover is complete when Codex can create a workspace that:
 
-- exists at the required desktop path
+- exists at the required workspace path
 - contains the expected top-level structure
 - keeps repos separated and portable
 - uses shared caches for performance

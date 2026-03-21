@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-03-21
+
+- Moved the canonical workspace handover docs from `tools/docs/` to the root `docs/` folder.
+- Removed the duplicated documentation links from `shared/` so it acts as a metadata-only layer.
+- Rewrote the repo root `README.md` to behave more like a public project homepage.
+- Added `LICENSE`, `.github/CONTRIBUTING.md`, and a scaffolded `.github/FUNDING.yml`.
+- Normalized workspace docs away from the old machine-specific path assumptions.
+
 ## 2026-03-17
 
 - Moved the six canonical workspace handover docs from the workspace root into `tools/docs/`.
