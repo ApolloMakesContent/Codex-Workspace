@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-03-23
+
+- Refined the skills guidance so `.agents/skills/` is documented as the native repo-level Codex location, with `shared/skills/` as shared source material and `.workspace/skills/` as an optional secondary compatibility layer.
+- Clarified that third-party orchestration layers and generated agent setup should remain optional local tooling rather than the canonical workspace layout.
+- Added `tools/scripts/sync-codex-skills.sh` to preview or sync tracked skill sources into repo `.agents/skills/` folders.
+- Added `docs/08-first-run-and-updates.md` plus `tools/scripts/doctor-workspace.sh` to define onboarding questions, setup profiles, and the recommended layered update flow.
+- Added a narrow “patterns, not platforms” note for larger agent systems: progressive skill loading, execution modes, and filesystem-backed job artifacts are in scope, while full orchestration remains local-only and optional.
+- Added starter skill templates and a selective install-profile example under `tools/templates/skills/`.
+- Added generic MCP templates and hygiene guidance: `read-only` by default, explicit `mutating` opt-in, and quiet stdio/logging conventions for future workspace MCP tools.
+- Updated `bootstrap-repo.sh` to use package-manager precedence before lockfile fallback, and added `tools/scripts/setup-workspace-profile.sh` as a guided non-destructive profile helper.
+- Added optional tracked spec templates, repo-local UI preview guidance, and a local agent-job artifact bundle script for larger or riskier work.
+- Added optional local workflow-state guidance, optional `AGENTS.md` composition guidance, repo-group manifest support in `update-all.sh`, and a hash-seeded `audit.jsonl` file in local job bundles.
+
+## 2026-03-22
+
+- Clarified that upstream skill catalogs such as `openai/skills` should be treated as optional sources for selected Codex skills rather than vendored workspace dependencies.
+- Added matching guidance in the root README, the cross-agent skills and MCP note, and the Workspace Hub extension guide.
+
 ## 2026-03-21
 
 - Added GitHub Discussions support links so repository questions are routed toward Discussions Q&A instead of Issues.

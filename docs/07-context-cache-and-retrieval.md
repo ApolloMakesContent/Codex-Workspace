@@ -23,6 +23,7 @@ AI-assisted workspaces often accumulate context in too many places:
 - README files
 - screenshots
 - local notes
+- optional workflow-state folders
 - agent skills
 - runtime metadata
 
@@ -52,8 +53,9 @@ Examples:
 
 - repo `README.md`
 - `.workspace/project.json`
-- repo-local `.workspace/skills/`
+- repo-local `.agents/skills/`
 - workspace-wide `shared/skills/`
+- optional repo-local `.workspace/skills/` when used as a tool-neutral source layer
 - generated repo summaries in `cache/context/`
 
 ### 2. Layered context loading
@@ -80,6 +82,33 @@ Tracked context should remain portable. Local memory should remain local.
 
 Local memory is still useful, but it should be deliberate, reviewable, and clearly separated from canonical repo facts.
 
+## Selective Patterns
+
+Some external agent or workspace systems are useful more as pattern libraries than as dependencies.
+
+Useful narrow patterns include:
+
+- progressive skill loading with focused skill packaging
+- explicit execution modes for future agent-heavy workflows such as `fast`, `standard`, and `strict`
+- selective install or publishing of only the packs a workspace actually needs
+- common versus language-specific skill pack layout
+- repo-local component previews and story-style compositions rather than one giant shared preview platform
+- filesystem-based task artifact layout so long-running work can write summaries and outputs to disk instead of keeping everything in active prompt context
+- tracked specs or change proposals for larger work so intent does not disappear with a chat session
+- optional local workflow-state layers for runs, events, and collections without forcing them to become the source of truth
+
+These patterns fit the current workspace direction because they can reduce repeated context loading and make long-running work more inspectable without turning Codex Workspace into a full agent platform.
+
+What this workspace should not adopt as baseline behaviour:
+
+- a full super-agent harness
+- a component platform with its own scopes, lanes, or release workflow as the workspace default
+- sandbox or provisioner infrastructure as a workspace requirement
+- plugin, hook, or slash-command runtime as a workspace requirement
+- gateway services, IM channels, or chat-bot surfaces
+- long-term memory as canonical tracked repo state
+- heavy runtime prerequisites for every user just to use the workspace normally
+
 ## Context categories
 
 The workspace should treat context as a few explicit categories:
@@ -90,6 +119,7 @@ Tracked project material such as:
 
 - `README.md`
 - `docs/`
+- `openspec/`
 - `.workspace/project.json`
 - screenshots and covers
 - selected config files that explain runtime behaviour
@@ -98,8 +128,11 @@ Tracked project material such as:
 
 Portable workflow guidance such as:
 
+- `repos/<repo>/.agents/skills/`
 - `shared/skills/`
-- `repos/<repo>/.workspace/skills/`
+- optional `repos/<repo>/.workspace/skills/`
+
+In Codex-first repos, `.agents/skills/` is the native discoverable location.
 
 ### Local memory
 
@@ -108,6 +141,7 @@ Private operator notes and machine-specific configuration such as:
 - `.workspace/project.local.json`
 - `docs/*.local.md`
 - `tools/local/agents/`
+- optional local workflow-state folders such as `.cognetivy/`
 
 This material should stay untracked by default because it is often private, short-lived, or specific to one machine or operator.
 
@@ -134,6 +168,16 @@ Codex Workspace/
         │   ├── abstract.md
         │   ├── overview.md
         │   └── sources.json
+        ├── agents/
+        │   └── jobs/
+        │       └── <job-id>/
+        │           ├── audit.jsonl
+        │           ├── plan.md
+        │           ├── summary.md
+        │           ├── logs/
+        │           ├── screenshots/
+        │           ├── outputs/
+        │           └── sources.json
         └── repos/
             └── workspace-hub/
                 ├── abstract.md
@@ -171,6 +215,32 @@ Typical contents:
 - runtime assumptions
 - important manifests
 - known caveats
+
+For future long-running agent jobs, a similar compact summary file under `cache/context/agents/jobs/<job-id>/summary.md` can keep follow-up work cheaper and more inspectable.
+
+Use `tools/scripts/init-agent-job-bundle.sh` to create this local cache bundle when the work is large enough to justify it.
+
+### `plan.md` and `summary.md`
+
+These are job-level working files rather than canonical repo docs.
+
+Use them for:
+
+- a scoped plan for the current task
+- verification notes and evidence pointers
+- a concise local handoff when the work spans multiple sessions
+
+Promote anything durable from these files into tracked docs, specs, or skills once it stabilizes.
+
+### `audit.jsonl`
+
+This is a local tamper-evident event log seed for the job bundle.
+
+Use it to record:
+
+- bundle creation
+- later append-only workflow events if you choose to extend the bundle locally
+- quick integrity checks when you want an audit trail for sensitive or risky work
 
 ### `sources.json`
 
@@ -284,7 +354,7 @@ This context cache does not replace the skills and MCP layout.
 
 Use:
 
-- [06-cross-agent-skills-and-mcp.md](06-cross-agent-skills-and-mcp.md) for portable skill and MCP structure
+- [06-cross-agent-skills-and-mcp.md](06-cross-agent-skills-and-mcp.md) for Codex-native and portable skill and MCP structure
 - this file for generated summaries and retrieval visibility
 
 ## Practical outcome

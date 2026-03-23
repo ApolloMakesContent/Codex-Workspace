@@ -15,13 +15,54 @@ The goal is portability:
 
 Use a layered model:
 
-1. portable tracked skill sources
-2. optional agent-specific adapter folders
-3. local-only MCP config and secrets
+1. Codex-native repo skills in `.agents/skills/`
+2. shared workspace skill sources and templates
+3. local-only adapters and MCP config for non-Codex tools
 
-Do not make `.agents/skills/`, `.claude/skills/`, `.github/skills/`, or any similar folder the canonical source for the workspace.
+OpenAI's current Codex docs treat `.agents/skills/` as the native repo location for discoverable Codex skills, with progressive disclosure so full skill content is loaded only when needed.
 
-Treat those folders as compatibility targets that can be generated, symlinked, or copied from a portable source when a given tool needs them.
+Do not let every vendor-specific folder become an equal source of truth.
+
+Skills and MCP are not the only tracked agent-facing layer.
+
+For larger changes, an optional tracked spec layer such as `openspec/` can hold durable requirements and review intent without making the workspace depend on a bigger orchestration runtime.
+
+For this workspace:
+
+- use `.agents/skills/` when a tracked repo skill should be directly discoverable by Codex
+- use `shared/skills/` for reusable workspace-wide skill source material
+- use `.workspace/skills/` only when a repo intentionally maintains a tool-neutral source layer that is later exported or synced into `.agents/skills/`
+- keep non-Codex adapter folders as compatibility layers rather than primary sources
+
+If `AGENTS.md` files become too large to maintain comfortably, optional composition tooling can help manage fragments.
+
+When using that kind of tool here:
+
+- keep the committed `AGENTS.md` file as the canonical tracked output
+- keep composition tooling optional and local-friendly
+- treat fragments as authoring aids, not as a new mandatory runtime dependency
+
+Treat upstream skill catalogs such as [`openai/skills`](https://github.com/openai/skills) the same way:
+
+- use them as optional source material for selected Codex skills
+- install specific skills when they are useful
+- do not vendor the whole catalog into this workspace by default
+- keep repo-level Codex skills in `.agents/skills/`
+- keep shared reusable source material in `shared/skills/` and `tools/templates/skills/`
+
+Third-party orchestration layers that generate `AGENTS.md`, skills folders, or MCP config should remain optional local tooling by default rather than becoming the canonical workspace layout.
+
+Larger agent harnesses are best treated here as pattern sources rather than dependencies.
+
+Useful patterns to use selectively:
+
+- progressive skill loading
+- explicit execution modes such as `fast`, `standard`, and `strict`
+- selective install or publishing of only the skill packs a workspace actually needs
+- common versus language-specific skill pack layout
+- optional quality-gate and security-check skills as reusable building blocks
+
+These patterns are reflected in `tools/templates/skills/`.
 
 ## Minimal layout
 
@@ -48,31 +89,34 @@ Codex Workspace/
 │           └── cursor/
 └── repos/
     └── some-repo/
+        ├── .agents/
+        │   └── skills/
+        │       └── repo-runbook/
+        │           └── SKILL.md
         └── .workspace/
             ├── project.json
-            ├── skills/
-            │   └── repo-runbook/
-            │       └── SKILL.md
             └── mcp/
                 └── servers.sample.json
 ```
 
-Optional generated adapter targets inside a repo may look like this:
+Optional additional source or adapter targets inside a repo may look like this:
 
 ```text
 some-repo/
-├── .agents/skills/
+├── .workspace/skills/
 ├── .claude/skills/
 └── .github/skills/
 ```
 
-Those folders should usually be ignored by the repo that owns them unless the repo intentionally wants to publish a specific adapter layout.
+`.workspace/skills/` is optional and only needed when a repo intentionally maintains a tool-neutral source layer in addition to its Codex-native `.agents/skills/`.
+
+Non-Codex adapter folders should usually be ignored by the repo that owns them unless the repo intentionally wants to publish a specific adapter layout.
 
 ## What goes where
 
 ### `shared/skills/`
 
-Use this for workspace-wide reusable skills that apply across many repos.
+Use this for workspace-wide reusable skill source material that may be adapted into repo-level Codex skills.
 
 Examples:
 
@@ -81,15 +125,27 @@ Examples:
 - manifest generation
 - mixed-stack troubleshooting
 
+### `repos/<repo>/.agents/skills/`
+
+Use this for tracked repo skills that should be natively discoverable by Codex.
+
+If Codex is the primary consumer, this is the default repo-level location.
+
 ### `repos/<repo>/.workspace/skills/`
 
-Use this for repo-specific tracked skills that should travel with the repo without depending on a specific agent vendor.
+Use this only when a repo intentionally maintains a tool-neutral source layer or multi-agent compatibility source before exporting into `.agents/skills/`.
 
-This keeps agent guidance close to the repo while avoiding vendor lock-in.
+This is optional and secondary to `.agents/skills/` for Codex.
 
 ### `tools/templates/skills/`
 
 Use this for starter templates and examples rather than live skill installs.
+
+Recommended contents include:
+
+- common packs such as quality and security
+- language-specific starter packs such as TypeScript review
+- lightweight install-profile examples for selective publishing or syncing
 
 ### `tools/local/agents/`
 
@@ -107,6 +163,7 @@ Good contents:
 - server descriptions
 - command placeholders
 - documentation of expected environment variables
+- capability tier notes such as `read-only` versus `mutating`
 
 Do not store real secrets or machine-specific absolute paths here.
 
@@ -119,6 +176,7 @@ Tracked repo knowledge includes things such as:
 - repo runtime rules
 - stable troubleshooting notes
 - reusable workflow guidance
+- durable specs or requirements for larger changes
 - durable task instructions that other contributors should also see
 
 That knowledge should live in tracked files such as:
@@ -126,7 +184,9 @@ That knowledge should live in tracked files such as:
 - `README.md`
 - `docs/`
 - `.workspace/project.json`
-- `.workspace/skills/`
+- `openspec/`
+- `.agents/skills/`
+- optional `.workspace/skills/`
 
 Local operator memory includes things such as:
 
@@ -134,9 +194,12 @@ Local operator memory includes things such as:
 - private MCP endpoints
 - temporary workarounds
 - personal notes and reminders
+- local workflow-state folders such as `.cognetivy/`
 - secrets or environment-specific preferences
 
 That material should stay in ignored local files by default.
+
+Optional workflow-state tools can be useful for local runs, events, and collections, but they should not replace tracked docs, specs, manifests, or skills as the durable project contract.
 
 ## Promotion rule
 
@@ -146,14 +209,22 @@ Do not rely on private local memory as the long-term home of canonical repo know
 
 ## Adapter rule
 
-If an agent expects a specific directory such as `.agents/skills/` or `.claude/skills/`, create that as an adapter target, not as the primary source.
+For Codex, `.agents/skills/` is the native repo location rather than an adapter target.
+
+Create additional adapters only for other tools that need them.
 
 That means:
 
-- source from `shared/skills/` or `.workspace/skills/`
-- export or symlink into the agent-specific path only when needed
-- keep generated adapter folders local unless there is a strong reason to publish them
-- if the adapter target lives inside a repo, let that repo decide whether to ignore or publish it
+- track repo-level Codex skills in `.agents/skills/`
+- keep reusable source material in `shared/skills/`
+- if a repo also maintains `.workspace/skills/`, sync or export that into `.agents/skills/`
+- create non-Codex adapter folders only when needed
+- keep generated non-Codex adapters and orchestration state local unless there is a strong reason to publish them
+- if an adapter target lives inside a repo, let that repo decide whether to ignore or publish it
+
+If you need a skill from an upstream catalog, prefer installing that one skill through the agent's supported installer flow rather than copying the upstream repository into `repos/` or `tools/`.
+
+If a repo keeps shared or tool-neutral tracked skill sources, use `tools/scripts/sync-codex-skills.sh` to preview or sync those tracked sources into `.agents/skills/`.
 
 ## MCP rule
 
@@ -172,6 +243,17 @@ So the safe pattern is:
 - keep real credentials and local endpoints in ignored local config
 - generate agent-specific MCP config from the portable examples if needed
 
+Additional hygiene for future workspace MCP tools:
+
+- default tracked examples to `read-only`
+- treat `mutating` capabilities as explicit opt-in
+- for stdio transports, keep stdout clean and prefer quiet or error-only logging
+- document any env vars needed to disable noisy console output
+- keep one consistent config shape even if the same tool can run through `npx`, local install, Docker, or a hosted endpoint
+- prefer prebuilt or cached reference data when it materially reduces startup cost
+
+Starter templates for this live in `tools/templates/mcp/`.
+
 ## Workspace Hub scope
 
 Workspace Hub v1 should not require skills or MCP to function.
@@ -180,8 +262,8 @@ If Workspace Hub gains agent awareness later, the first useful step is visibilit
 
 Good future behaviour:
 
-- detect whether a repo has portable skills
-- detect whether local agent adapters exist
+- detect whether a repo has Codex-native skills
+- detect whether additional local agent adapters exist
 - show that status in the UI
 - link to the relevant folders or docs
 
@@ -189,8 +271,9 @@ Avoid making Workspace Hub responsible for launching or orchestrating agent-spec
 
 ## Default policy
 
-- portable tracked source first
-- vendor-specific adapter second
+- Codex-native repo skills first
+- shared portable source material second
+- non-Codex adapters third
 - local secrets and machine paths last
 - repo opt-in, never mandatory
 - no agent setup should be required to run a repo normally
@@ -200,4 +283,4 @@ Avoid making Workspace Hub responsible for launching or orchestrating agent-spec
 
 This approach keeps the workspace adaptable if tool conventions change.
 
-If another agent later prefers a new folder name or config location, only the adapter layer needs to change. The tracked skill content and repo-local intent can stay stable.
+If another agent later prefers a new folder name or config location, only the non-Codex adapter layer needs to change. The tracked repo intent can stay stable.

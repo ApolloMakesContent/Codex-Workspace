@@ -1,5 +1,7 @@
 # Codex Workspace
 
+<img src="favicon.png" alt="Codex Workspace favicon" width="64" />
+
 <!-- workspace-hub:cover:start -->
 ![Codex Workspace cover](.github/assets/cover-readme-20260321.png)
 <!-- workspace-hub:cover:end -->
@@ -91,6 +93,12 @@ Codex Workspace/
 
 ## Quick Start
 
+First run:
+- [docs/08-first-run-and-updates.md](docs/08-first-run-and-updates.md)
+- `tools/scripts/doctor-workspace.sh`
+- `tools/scripts/setup-workspace-profile.sh`
+- `tools/scripts/init-agent-job-bundle.sh`
+
 Review the docs index:
 - [docs/README.md](docs/README.md)
 
@@ -118,6 +126,7 @@ Start here:
 - [docs/05-examples-and-templates.md](docs/05-examples-and-templates.md)
 - [docs/06-cross-agent-skills-and-mcp.md](docs/06-cross-agent-skills-and-mcp.md)
 - [docs/07-context-cache-and-retrieval.md](docs/07-context-cache-and-retrieval.md)
+- [docs/08-first-run-and-updates.md](docs/08-first-run-and-updates.md)
 
 Supporting references:
 - [docs/HANDOVER.md](docs/HANDOVER.md)
@@ -141,8 +150,9 @@ Codex Workspace treats agent-facing context as normal workspace content rather t
 The practical model is:
 
 - tracked resources such as repo docs, READMEs, and manifests
-- portable skills stored in workspace-wide or repo-local folders
+- Codex-native repo skills stored in `.agents/skills/`, with shared skill sources and templates kept in normal tracked folders
 - generated context summaries under `cache/context/`
+- optional local workflow-state folders such as `.cognetivy/` kept separate from canonical tracked docs
 - local-only memory and MCP config kept separate from tracked repo content
 
 This keeps context easier to inspect, reason about, and adapt across tools while keeping each repo independently runnable.
@@ -152,6 +162,15 @@ Tracked repo knowledge belongs in public docs, manifests, and portable skills. L
 See:
 - [docs/06-cross-agent-skills-and-mcp.md](docs/06-cross-agent-skills-and-mcp.md)
 - [docs/07-context-cache-and-retrieval.md](docs/07-context-cache-and-retrieval.md)
+
+External skill catalogs such as [`openai/skills`](https://github.com/openai/skills) should be treated as optional upstream sources for Codex skills, not vendored workspace dependencies.
+
+- install only the specific skills that solve a real workflow need
+- prefer local skill installation via Codex tooling such as `$skill-installer`
+- for repo-level Codex discoverability, prefer tracked `.agents/skills/`
+- keep workspace-wide reusable skill sources in `shared/skills/` and starter templates in `tools/templates/skills/`
+- keep third-party orchestration layers and generated agent setup local-only unless there is a strong reason to publish them
+- do not add the whole upstream skill catalog to `repos/`, `tools/`, or as a submodule unless there is a very specific maintenance reason
 
 ## Community
 
