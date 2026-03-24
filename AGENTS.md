@@ -4,6 +4,9 @@
 
 These instructions apply to the **Codex Workspace** and to the **Workspace Hub** repository unless a deeper repo-specific `AGENTS.md` overrides them.
 
+For baseline expectations that should be visible to any newly added repo in this workspace, also use:
+- `docs/09-new-repo-baseline.md`
+
 ## Primary objective
 
 Maintain a clean, high-performance local workspace for mixed repository types.
@@ -127,6 +130,10 @@ When there is no explicit manifest:
 - default frontend-style repos to `direct`
 - default WP projects already managed elsewhere to `external`
 - do not auto-run heavy install steps without clear reason
+
+## New repo baseline
+
+When a repo is first added under `repos/`, assume the baseline in `docs/09-new-repo-baseline.md` applies unless that repo already has clearer local instructions.
 
 ## Future-friendly behaviour
 

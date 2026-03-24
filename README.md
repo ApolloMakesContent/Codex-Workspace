@@ -98,6 +98,9 @@ First run:
 Review the docs index:
 - [docs/README.md](docs/README.md)
 
+If you are adding or onboarding a repo in this workspace:
+- [docs/09-new-repo-baseline.md](docs/09-new-repo-baseline.md)
+
 Run the local dashboard:
 
 ```bash
@@ -123,6 +126,7 @@ Start here:
 - [docs/06-cross-agent-skills-and-mcp.md](docs/06-cross-agent-skills-and-mcp.md)
 - [docs/07-context-cache-and-retrieval.md](docs/07-context-cache-and-retrieval.md)
 - [docs/08-first-run-and-updates.md](docs/08-first-run-and-updates.md)
+- [docs/09-new-repo-baseline.md](docs/09-new-repo-baseline.md)
 
 Supporting references:
 - [docs/HANDOVER.md](docs/HANDOVER.md)
