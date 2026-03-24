@@ -12,6 +12,8 @@
 - Updated `bootstrap-repo.sh` to use package-manager precedence before lockfile fallback, and added `tools/scripts/setup-workspace-profile.sh` as a guided non-destructive profile helper.
 - Added optional tracked spec templates, repo-local UI preview guidance, and a local agent-job artifact bundle script for larger or riskier work.
 - Added optional local workflow-state guidance, optional `AGENTS.md` composition guidance, repo-group manifest support in `update-all.sh`, and a hash-seeded `audit.jsonl` file in local job bundles.
+- Added importable GitHub ruleset JSON for protecting `main` and `v*` release tags without forcing a PR-only workflow.
+- Added minimal tracked GitHub Copilot instructions plus a local-only Copilot skeleton for personal prompts, notes, and machine-specific setup.
 
 ## 2026-03-22
 

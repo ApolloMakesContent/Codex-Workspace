@@ -104,6 +104,9 @@ Optional additional source or adapter targets inside a repo may look like this:
 ```text
 some-repo/
 ├── .workspace/skills/
+├── .github/copilot-instructions.md
+├── .github/instructions/
+├── .github/prompts/
 ├── .claude/skills/
 └── .github/skills/
 ```
@@ -152,6 +155,16 @@ Recommended contents include:
 Use this ignored location for machine-specific exports, generated adapter folders, agent config, and private notes.
 
 This is the right place for local state that should not become a cross-repo contract.
+
+For Copilot specifically, this is the preferred home for personal prompt files, local notes, and machine-specific MCP or endpoint details that should not be published.
+
+### `repos/<repo>/.github/copilot-instructions.md`
+
+Use this for short tracked Copilot guidance that applies repo-wide.
+
+Keep it brief and make `AGENTS.md` the canonical source for broader workspace policy when both exist.
+
+Path-specific Copilot instructions and reusable prompt files should only be added when a repo actually benefits from that extra structure.
 
 ### `repos/<repo>/.workspace/mcp/`
 
