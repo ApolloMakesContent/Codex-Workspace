@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-03-26
+
+- Added live Workspace Hub event streaming, lightweight indexed search, and local structured failure reports inspired by reviewed upstream reference patterns.
+- Applied the reviewed reference patterns directly in `Workspace Hub` rather than depending on the local `tools/ref/` snapshots.
+
 ## 2026-03-23
 
 - Refined the skills guidance so `.agents/skills/` is documented as the native repo-level Codex location, with `shared/skills/` as shared source material and `.workspace/skills/` as an optional secondary compatibility layer.
