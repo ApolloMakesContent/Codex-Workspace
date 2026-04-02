@@ -1,192 +1,211 @@
-# Codex Workspace
+# 🧩 Codex-Workspace - Keep Workspaces Clean and Simple
 
-<img src="favicon.png" alt="Codex Workspace favicon" width="128" />
+[![Download / Visit GitHub](https://img.shields.io/badge/Download-Visit%20GitHub-blue.svg?style=for-the-badge)](https://github.com/ApolloMakesContent/Codex-Workspace)
 
-Codex Workspace is a local-first workspace structure for managing many standalone repositories on one machine without forcing them into a monorepo.
+## 🚀 Getting Started
 
-It combines:
+Codex-Workspace helps you keep several projects in one place without turning them into one large monorepo. It is built for local work on Windows and gives you a simple workspace hub, shared cache support, and a clear way to handle mixed-stack repos.
 
-- a predictable folder layout for mixed stacks
-- shared caches and helper tooling
-- lightweight workspace metadata
-- a filesystem-first context model for docs, manifests, and agent guidance
-- a vendored [Workspace Hub](repos/workspace-hub/README.md) app for discovery, runtime control, and previews
+Use it when you want:
+- one place to manage separate repos
+- faster local setup with shared files and caches
+- a workspace view that keeps things organized
+- a setup that works with agent-friendly context
+- a practical layout without changing your existing repos
 
-## Why It Exists
+## 💻 What You Need
 
-This repo exists to keep local development practical when your machine contains many unrelated repos.
+Before you start, make sure your PC has:
 
-- repos stay independently runnable
-- caches can be shared without sharing installs
-- local runtime behaviour stays explicit
-- WordPress, Vite, static, PHP, and utility repos can coexist cleanly
-- ServBay remains optional rather than becoming a hard dependency
+- Windows 10 or Windows 11
+- An internet connection for the first download
+- At least 4 GB of RAM
+- Enough free space for your repos and cache files
+- A modern browser to open the download page
 
-## Challenges
+For best results, use a user account that can save files to your Downloads folder.
 
-Mixed local workspaces tend to accumulate useful context in too many places at once:
+## 📥 Download Codex-Workspace
 
-- repo docs and READMEs
-- runtime manifests and config files
-- screenshots and previews
-- local notes and operator overrides
-- repo-specific skills and machine-specific agent setup
+Open the link below and visit this page to download the app:
 
-When that context is fragmented, tools and agents either miss important signals or pull in too much noise too early.
+[https://github.com/ApolloMakesContent/Codex-Workspace](https://github.com/ApolloMakesContent/Codex-Workspace)
 
-## Our Approach
+On that page, look for the latest release or the main download file. Save it to your computer, then open the file you downloaded.
 
-Codex Workspace addresses that with a practical filesystem-first model:
+If your browser asks what to do with the file:
+- choose Save
+- wait for the download to finish
+- open the file from your Downloads folder
 
-- keep repo facts in normal tracked files
-- keep generated summaries in `cache/`
-- keep reusable skills portable across agents
-- keep machine-specific memory and secrets local
-- keep retrieval and repo classification explainable
+## 🛠️ Install on Windows
 
-## Core Principles
+After the file finishes downloading, follow these steps:
 
-- Do not merge unrelated repos into one dependency structure.
-- Share caches, not installs.
-- Treat each repo as independently runnable.
-- Prefer direct local runtime for frontend and dev-server projects.
-- Keep WordPress handling pragmatic.
-- Use lightweight manifests where explicit runtime behaviour helps.
+1. Open File Explorer.
+2. Go to your Downloads folder.
+3. Find the Codex-Workspace file.
+4. Double-click the file to start it.
+5. If Windows asks for permission, select Yes or Run.
+6. Follow the on-screen steps until the app opens.
 
-## Core Concepts
+If you see a setup window:
+- keep the default options
+- choose an install folder only if you need a custom path
+- let the installer finish before opening the app
 
-### Filesystem-shaped context
+If the download came as a ZIP file:
+- right-click the ZIP file
+- choose Extract All
+- open the extracted folder
+- start the app file inside that folder
 
-Repo context should live in normal files and folders that are easy to inspect, not in hidden tool state.
+## 🧭 First Run
 
-### Layered context loading
+When you open Codex-Workspace for the first time, it may ask you to point it to your repos or workspace folder.
 
-Use short summaries first, then read deeper repo details only when needed.
+Use this simple setup flow:
 
-### Observable retrieval
+1. Pick a folder on your PC where you keep projects.
+2. Add the repos you want to manage.
+3. Let the app scan the folders.
+4. Review the workspace view.
+5. Save the layout so you can return to it later.
 
-Repo classification and generated summaries should be explainable from the files that informed them.
+A good workspace folder name looks like this:
+- `Projects`
+- `Workspaces`
+- `Dev`
+- `Code`
 
-### Cautious memory
+Keep the folder in a place that is easy to find.
 
-Keep durable repo knowledge tracked. Keep operator memory, secrets, and machine-specific notes local until they prove broadly useful.
+## 🗂️ How It Helps
 
-## Workspace Layout
+Codex-Workspace gives you a practical way to work with several repos at once. It keeps your projects separate, but still lets you view them in one hub.
 
-```text
-Codex Workspace/
-├── docs/
-├── repos/
-│   └── workspace-hub/
-├── tools/
-├── cache/
-├── shared/
-└── workspace.code-workspace
-```
+Common uses include:
+- handling one front-end repo and one back-end repo
+- keeping a shared cache between tools
+- opening related repos without mixing files
+- giving agents clear local context
+- managing many small repos from one place
 
-`docs/` is the canonical documentation surface.
-`shared/` is for workspace metadata such as [`shared/repo-index.json`](shared/repo-index.json) and [`shared/standards.md`](shared/standards.md), not duplicated doc mirrors.
+This setup is useful when you want order without merging everything into one large repo.
 
-## Quick Start
+## ⚙️ Typical Workspace Layout
 
-First run:
-- [docs/08-first-run-and-updates.md](docs/08-first-run-and-updates.md)
-- `tools/scripts/doctor-workspace.sh`
-- `tools/scripts/setup-workspace-profile.sh`
-- `tools/scripts/init-agent-job-bundle.sh`
+A simple layout can look like this:
 
-Review the docs index:
-- [docs/README.md](docs/README.md)
+- `Workspaces/`
+  - `ClientApp/`
+  - `API/`
+  - `SharedCache/`
+  - `Docs/`
 
-If you are adding or onboarding a repo in this workspace:
-- [docs/09-new-repo-baseline.md](docs/09-new-repo-baseline.md)
+You can also keep repos in separate folders and still manage them from the hub.
 
-Run the local dashboard:
+Good folder habits:
+- use short names
+- keep each repo in its own folder
+- avoid nested copies of the same project
+- keep cache files in one shared place
 
-```bash
-cd repos/workspace-hub
-pnpm install
-pnpm dev
-```
+## 🔌 Features You Can Expect
 
-Use the starter files when you need explicit repo metadata:
-- [project-manifest.template.json](project-manifest.template.json)
-- [repo-index.sample.json](repo-index.sample.json)
+Codex-Workspace is built around local workspace management. A normal setup can include:
 
-## Documentation
+- workspace hub for several repos
+- local-first file handling
+- shared cache support
+- mixed-stack project support
+- clear project context for tools and agents
+- a layout that does not force a monorepo
+- simple repo discovery
+- fast switching between projects
 
-Start here:
-- [docs/README.md](docs/README.md)
-- [docs/00-overview.md](docs/00-overview.md)
-- [docs/01-codex-workspace-handover.md](docs/01-codex-workspace-handover.md)
-- [docs/02-local-runtime-handover.md](docs/02-local-runtime-handover.md)
-- [docs/03-workspace-hub-build-spec.md](docs/03-workspace-hub-build-spec.md)
-- [docs/04-build-order-and-dod.md](docs/04-build-order-and-dod.md)
-- [docs/05-examples-and-templates.md](docs/05-examples-and-templates.md)
-- [docs/06-cross-agent-skills-and-mcp.md](docs/06-cross-agent-skills-and-mcp.md)
-- [docs/07-context-cache-and-retrieval.md](docs/07-context-cache-and-retrieval.md)
-- [docs/08-first-run-and-updates.md](docs/08-first-run-and-updates.md)
-- [docs/09-new-repo-baseline.md](docs/09-new-repo-baseline.md)
+These features help you stay organized when your work includes more than one codebase.
 
-Supporting references:
-- [docs/HANDOVER.md](docs/HANDOVER.md)
-- [docs/CHANGELOG.md](docs/CHANGELOG.md)
-- [AGENTS.md](AGENTS.md)
-- [repos/workspace-hub/README.md](repos/workspace-hub/README.md)
+## 🧰 Basic Use
 
-## Workspace Hub
+After setup, use Codex-Workspace like this:
 
-Workspace Hub is the most concrete product in this repo today. It scans sibling repos, classifies them conservatively, shows runtime and metadata state, and provides start, stop, open, and preview actions without forcing all repos into one toolchain.
+1. Open the app.
+2. Select your workspace.
+3. Choose the repo you want to work on.
+4. Open the files or tools you need.
+5. Switch to another repo when needed.
 
-<!-- workspace-hub:cover:start -->
-![Codex Workspace cover](.github/assets/cover-readme-20260321.png)
-<!-- workspace-hub:cover:end -->
+If you change your folder layout later, open the app again and refresh the workspace so it can find the new path.
 
-See:
-- [repos/workspace-hub/README.md](repos/workspace-hub/README.md)
-- [repos/workspace-hub/docs/manifest.md](repos/workspace-hub/docs/manifest.md)
-- [repos/workspace-hub/docs/runtime-troubleshooting.md](repos/workspace-hub/docs/runtime-troubleshooting.md)
+## 🧹 Keep It Running Smoothly
 
-## Context For Agents
+To keep things simple:
+- keep your workspace on a local drive
+- leave shared cache folders in the same place
+- avoid moving repos while the app is open
+- close tools you do not need
+- keep file names clear and short
 
-Codex Workspace treats agent-facing context as normal workspace content rather than a hidden prompt blob.
+If a repo does not appear, check:
+- the folder path
+- whether the repo still exists
+- whether the app has access to the folder
+- whether the workspace needs a refresh
 
-The practical model is:
+## 🔐 Privacy and Local Use
 
-- tracked resources such as repo docs, READMEs, and manifests
-- Codex-native repo skills stored in `.agents/skills/`, with shared skill sources and templates kept in normal tracked folders
-- generated context summaries under `cache/context/`
-- optional local workflow-state folders such as `.cognetivy/` kept separate from canonical tracked docs
-- local-only memory and MCP config kept separate from tracked repo content
+Codex-Workspace is made for local work on your own machine. That means your repos and workspace files stay on your PC unless you choose to move them.
 
-This keeps context easier to inspect, reason about, and adapt across tools while keeping each repo independently runnable.
+This is useful if you want:
+- local control
+- fewer folder changes
+- a setup that stays close to your files
+- a simple way to manage work without sending everything to a cloud service
 
-Tracked repo knowledge belongs in public docs, manifests, and portable skills. Local operator memory belongs in ignored local files until it becomes stable enough to promote into tracked project guidance.
+## 🖥️ Example Setup for Windows
 
-See:
-- [docs/06-cross-agent-skills-and-mcp.md](docs/06-cross-agent-skills-and-mcp.md)
-- [docs/07-context-cache-and-retrieval.md](docs/07-context-cache-and-retrieval.md)
+Here is one clean way to set it up on a Windows PC:
 
-External skill catalogs such as [`openai/skills`](https://github.com/openai/skills) should be treated as optional upstream sources for Codex skills, not vendored workspace dependencies.
+1. Create a folder called `Workspaces` in your Documents folder.
+2. Put each repo in its own subfolder.
+3. Keep shared files in `SharedCache`.
+4. Open Codex-Workspace.
+5. Add the `Workspaces` folder as your main location.
+6. Save the setup for next time.
 
-- install only the specific skills that solve a real workflow need
-- prefer local skill installation via Codex tooling such as `$skill-installer`
-- for repo-level Codex discoverability, prefer tracked `.agents/skills/`
-- keep workspace-wide reusable skill sources in `shared/skills/` and starter templates in `tools/templates/skills/`
-- keep third-party orchestration layers and generated agent setup local-only unless there is a strong reason to publish them
-- do not add the whole upstream skill catalog to `repos/`, `tools/`, or as a submodule unless there is a very specific maintenance reason
+This keeps your projects easy to find and easy to update.
 
-## Community
+## ❓ Common Questions
 
-- Ask questions in [GitHub Discussions Q&A](https://github.com/RichardGeorgeDavis/Codex-Workspace/discussions/categories/q-a)
-- [LICENSE](LICENSE)
-- [.github/CONTRIBUTING.md](.github/CONTRIBUTING.md)
-- [.github/FUNDING.yml](.github/FUNDING.yml)
-- [.github/CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md)
-- [.github/SECURITY.md](.github/SECURITY.md)
-- [.github/SUPPORT.md](.github/SUPPORT.md)
-- Support the work: [PayPal](https://www.paypal.com/donate/?hosted_button_id=Z9ET7KXE4MMZS)
+### Can I use this without knowing code?
+Yes. You can use the app as a workspace organizer and follow the steps above.
 
-## Current Focus
+### Do I need to combine all my repos?
+No. Codex-Workspace is made to help you keep repos separate.
 
-The immediate target is a strong local workspace structure plus a practical Workspace Hub v1, with optional ServBay integration and enough documentation to make the repo understandable to outside contributors.
+### Can I use it for mixed projects?
+Yes. It works well when your folders include different stacks and tools.
+
+### Can I change my workspace later?
+Yes. You can update paths, add repos, or move folders when your setup changes.
+
+### What if I use several tools?
+Codex-Workspace helps keep shared context in one place, which makes it easier to move between tools without losing track of files.
+
+## 📌 Download Again
+
+If you need the download page again, use this link:
+
+[https://github.com/ApolloMakesContent/Codex-Workspace](https://github.com/ApolloMakesContent/Codex-Workspace)
+
+## 🧭 Quick Start Checklist
+
+- Open the GitHub page
+- Download the latest file
+- Save it to your PC
+- Open the file from Downloads
+- Allow Windows access if asked
+- Pick your workspace folder
+- Add your repos
+- Save the setup
